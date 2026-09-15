@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Northstar People | Employee Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <section class="login-screen" id="loginScreen"><div class="login-card"><a class="brand login-brand" href="/"><span class="brand-mark">N</span><span>northstar</span></a><p class="eyebrow">People operations</p><h1>Welcome back</h1><p class="login-copy">Sign in to manage your employee directory.</p><form id="loginForm"><label>Work email<input id="loginEmail" type="email" value="admin@northstar.co" required></label><label>Password<input id="loginPassword" type="password" value="northstar" required></label><p class="login-error" id="loginError"></p><button class="button button-primary" type="submit">Sign in <span>→</span></button></form><p class="demo-note">Demo access: admin@northstar.co</p></div></section>
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brand-mark">N</span><span>northstar</span></a>
+    <div class="workspace-label">Workspace</div>
+    <nav>
+      <a class="nav-item active" href="#directory"><span class="nav-icon">▦</span> Directory</a>
+      <a class="nav-item" href="#overview"><span class="nav-icon">◫</span> Overview</a>
+      <a class="nav-item" href="#reports"><span class="nav-icon">◒</span> Reports</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> Settings</a>
+      <div class="user-chip"><span class="avatar avatar-small">JM</span><span><strong>Jordan Miller</strong><small>Administrator</small></span><span class="more">•••</span></div>
+    </div>
+  </aside>
+
+  <main class="main-content" id="directory">
+    <header class="topbar"><button class="mobile-menu" aria-label="Open navigation">☰</button><div class="breadcrumb">Workspace <span>/</span> People</div><div class="top-actions"><button class="icon-button" aria-label="Notifications">♧<i></i></button><div class="top-avatar">JM</div></div></header>
+    <section class="page-heading"><div><p class="eyebrow">People operations</p><h1>Employee directory</h1><p class="subtitle">Manage your team's information, roles, and access in one place.</p></div><button class="button button-primary" id="addEmployeeButton"><span>＋</span> Add employee</button></section>
+
+    <section class="stats-grid" aria-label="Directory summary">
+      <article class="stat-card"><div class="stat-top"><span>Total employees</span><span class="stat-icon green">♙</span></div><strong id="totalEmployees">—</strong><small><b class="positive">↑ 8.2%</b> from last month</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Active employees</span><span class="stat-icon yellow">◉</span></div><strong id="activeEmployees">—</strong><small><b class="positive">↑ 4.6%</b> from last month</small></article>
+      <article class="stat-card"><div class="stat-top"><span>On leave</span><span class="stat-icon lilac">☼</span></div><strong id="leaveEmployees">—</strong><small><b class="neutral">— 0.0%</b> from last month</small></article>
+      <article class="stat-card"><div class="stat-top"><span>Departments</span><span class="stat-icon blue">⌘</span></div><strong id="departmentCount">—</strong><small><b class="positive">↑ 1</b> new this month</small></article>
+    </section>
+
+    <section class="directory-panel">
+      <div class="panel-heading"><div><h2>All employees</h2><p>Keep your directory accurate and up to date.</p></div><div class="panel-tools"><button class="icon-button bordered" id="refreshButton" aria-label="Refresh directory">↻</button><button class="button button-secondary" id="exportButton">⇩ <span>Export</span></button></div></div>
+      <div class="filters"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search by name, role, or department..." aria-label="Search employees"></label><select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option value="Active">Active</option><option value="On leave">On leave</option><option value="Inactive">Inactive</option></select><select id="departmentFilter" aria-label="Filter by department"><option value="">All departments</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>Employee</th><th>Role & department</th><th>Employment</th><th>Status</th><th>Start date</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="employeeTable"><tr><td colspan="6" class="loading">Loading directory...</td></tr></tbody></table></div>
+      <div class="table-footer"><span id="resultCount">Showing employees</span><div class="pagination"><button disabled>‹</button><button class="current">1</button><button disabled>›</button></div></div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><div><p class="eyebrow" id="modalEyebrow">New record</p><h2 id="modalTitle">Add employee</h2></div><button class="close-button" id="closeModal" aria-label="Close">×</button></div><form id="employeeForm"><div class="form-grid"><label>First name<input name="firstName" required></label><label>Last name<input name="lastName" required></label><label>Work email<input name="email" type="email" required></label><label>Phone number<input name="phone" required></label><label>Employee ID<input name="employeeCode" placeholder="e.g. EMP-1047" required></label><label>Start date<input name="startDate" type="date" required></label><label>Department<select name="department" required><option value="">Select department</option><option>Engineering</option><option>Design</option><option>Operations</option><option>People</option><option>Finance</option><option>Marketing</option></select></label><label>Role<input name="role" required></label><label>Employment type<select name="employmentType" required><option value="">Select type</option><option>Full-time</option><option>Part-time</option><option>Contract</option></select></label><label>Status<select name="status" required><option>Active</option><option>On leave</option><option>Inactive</option></select></label><label class="full-width">Location<input name="location" required></label></div><p class="form-error" id="formError"></p><div class="modal-actions"><button type="button" class="button button-secondary" id="cancelModal">Cancel</button><button type="submit" class="button button-primary" id="saveEmployee">Save employee</button></div></form></section></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
